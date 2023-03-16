@@ -282,5 +282,11 @@ mysql> ALTER TABLE Employee RENAME TO PERSON;
 Query OK, 0 rows affected (0.43 sec)
 
 
+7) Delete the table dup_Employee
 
+mysql> drop table dup_Employee;
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> desc dup_Employee;
+ERROR 1146 (42S02): Table 'NEDA.dup_Employee' doesn't exist
 
