@@ -1,0 +1,49 @@
+                                               1.2 DML COMMANDS 
+a) DML COMMANDS-INSERT
+                       
+
+1)Insert values in EMPLOYEE table.
+                      
+
+
+mysql> INSERT INTO PERSON VALUES(1,"NEDA","CALICUT",2001,12348976),(2,"ANU","IDUKKY",2021,86548976),(3,"MANU","KOTTAYAM",2016,99348976);
+Query OK, 3 rows affected (0.15 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+mysql> SELECT *FROM PERSON;
++------+------+----------+------+----------+
+| SSN  | name | city     | dob  | adhar_no |
++------+------+----------+------+----------+
+|    1 | NEDA | CALICUT  | 2001 | 12348976 |
+|    2 | ANU  | IDUKKY   | 2021 | 86548976 |
+|    3 | MANU | KOTTAYAM | 2016 | 99348976 |
++------+------+----------+------+----------+
+3 rows in set (0.00 sec)
+
+
+
+2)Insert values in STUDENT table.
+                      
+
+
+
+mysql> INSERT INTO STUDENT VALUES(1,"NEDA",21,"abcd",'f'),(2,"ANU",29,"BEWSA",'f'),(4,"VINU",39,"hfdjkj",'m');
+Query OK, 3 rows affected (0.09 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM STUDENT;
++---------+------+------+---------+--------+
+| roll_no | name | age  | address | gender |
++---------+------+------+---------+--------+
+|       1 | NEDA |   21 | abcd    | f      |
+|       2 | ANU  |   29 | BEWSA   | f      |
+|       4 | VINU |   39 | hfdjkj  | m      |
++---------+------+------+---------+--------+
+3 rows in set (0.00 sec)
+
+
+
+3)Insert values in INVOICE database. 
+
+
