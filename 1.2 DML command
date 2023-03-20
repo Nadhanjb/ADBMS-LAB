@@ -47,3 +47,89 @@ mysql> SELECT *FROM STUDENT;
 3)Insert values in INVOICE database. 
 
 
+
+CUSTOMER TABLE
+--------------
+
+mysql> INSERT INTO CUSTOMER VALUES(100,'Neda','Thamarassery','Kozhikode',9656600778);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(102,'Vishnu','Thamarassery','Kozhikode');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(106,'Hiba','Perinthalmanna','Palakkad',8713090012);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(108,'Huda','Padinjarathara','Wayanad',8813090013);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(110,'Niba','Irittyy','Idukki');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(112,'Arun','Pattikkaad','Alappuzha');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(114,'Abin','Irinjalakkuda','Kannur');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++-----+--------+----------------+-----------+------------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO      |
++-----+--------+----------------+-----------+------------+
+| 100 | Neda   | Thamarassery   | Kozhikode | 9656600778 |
+| 102 | Vishnu | Thamarassery   | Kozhikode |       NULL |
+| 106 | Hiba   | Perinthalmanna | Palakkad  | 8713090012 |
+| 108 | Huda   | Padinjarathara | Wayanad   | 8813090013 |
+| 110 | Niba   | Iritty         | Idukki    |       NULL |
+| 112 | Arun   | Pattikkad      | Alappuzha |       NULL |
+| 114 | Abin   | Irinjalakkuda  | Kannur    |       NULL |
++-----+--------+----------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+
+
+PRODUCT TABLE
+-------------
+
+mysql> INSERT INTO PRODUCT VALUES(221,'NIRAPARA MATTA RICE',41);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(222,'NIRAPARA PUTTU PODI',28);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(223,'PEN(TECHNO TIP)',10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(224,'CHAIR',1000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(225,'MANGO PICKLE',80);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(226,'SASSFARAS TOP',68);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(227,'TANG POWDER',180);0
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(228,'AMUL MILK POWDER',580);
+Query OK, 1 row affected (0.05 sec)
+
+
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    41 |
+|  222 | NIRAPARA PUTTU PODI |    28 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1000 |
+|  225 | MANGO PICKLE        |    80 |
+|  226 | SASSFARAS TOP       |    68 |
+|  227 | TANG POWDER         |   180 |
+|  228 | AMUL MILK POWDER    |   580 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
