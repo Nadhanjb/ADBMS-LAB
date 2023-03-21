@@ -138,68 +138,25 @@ mysql> SELECT *FROM PRODUCT;
 INVOICE_MASTER TABLE
 -------------------
 
+INSERT INTO INVOICE_MASTER VALUES(111,110,'2023-01-29'),(816,110,'2023-01-29'),(115,106,'2023-03-29'),(958,100,'2023-12-29'),(344,108,'2023-03-19'),(915,110,'2022-03-10'),(355,114,'2023-03-29'),(165,106,'2023-12-12');
+Query OK, 7 rows affected (0.15 sec)
 
-mysql> INSERT INTO INVOICE_MASTER VALUES(31,100,'2022-12-16');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(16031,100,'2023-03-16');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(16033,100,'2023-03-28');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(310000,100,'2023-03-24');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(0503235,102,'2023-03-05');
-Query OK, 1 row affected (0.13 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(0598432,106,'2023-03-27');
-Query OK, 1 row affected (0.10 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(98768432,106,'2023-06-02');
-Query OK, 1 row affected (0.19 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(9889982,108,'2023-05-05');
-Query OK, 1 row affected (0.12 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(98895632,108,'2023-05-05');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(988956320,110,'2023-09-29');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(988956322,110,'2023-10-29');
-Query OK, 1 row affected (0.10 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(98898769,112,'2023-12-29');
-Query OK, 1 row affected (0.09 sec)
-
-mysql> INSERT INTO INVOICE_MASTER VALUES(98898678,114,'2023-09-29');
-Query OK, 1 row affected (0.09 sec)
-
-
+Records: 7  Duplicates: 0  Warnings: 0
 
 mysql> SELECT *FROM INVOICE_MASTER;
-+-----------+---------+------------+
-| INV_ID    | CUST_ID | INV_DATE   |
-+-----------+---------+------------+
-|        31 |     100 | 2022-12-16 |
-|     16031 |     100 | 2023-03-16 |
-|     16033 |     100 | 2023-03-28 |
-|    310000 |     100 | 2023-03-24 |
-|    503235 |     102 | 2023-03-05 |
-|    598432 |     106 | 2023-03-27 |
-|   9889982 |     108 | 2023-05-05 |
-|  98768432 |     106 | 2023-06-02 |
-|  98895632 |     108 | 2023-05-05 |
-|  98898678 |     114 | 2023-09-29 |
-|  98898769 |     112 | 2023-12-29 |
-| 988956320 |     110 | 2023-09-29 |
-| 988956322 |     110 | 2023-10-29 |
-+-----------+---------+------------+
-13 rows in set (0.00 sec)
-
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    111 |     110 | 2023-01-29 |
+|    115 |     106 | 2023-03-29 |
+|    165 |     106 | 2023-12-12 |
+|    344 |     108 | 2023-03-19 |
+|    355 |     114 | 2023-03-29 |
+|    816 |     110 | 2023-01-29 |
+|    915 |     110 | 2022-03-10 |
+|    958 |     100 | 2023-12-29 |
++--------+---------+------------+
+8 rows in set (0.01 sec)
 
 
 
@@ -211,29 +168,7 @@ INVOICE_ITEM TABLE
 
 
 
-mysql> INSERT INTO INVOICE_ITEM VALUES(16031,221,15),(16031,223,20),(31,224,12),(98898769,221,2),(16033,228,2),(31,225,1),(310000,227,3),(98898769,225,1),(310000,221,1),(988956322,226,3),(503235,223,2),(598432,222,3);
 
-Query OK, 12 rows affected (0.33 sec)
-Records: 12  Duplicates: 0  Warnings: 0
-
-mysql> SELECT *FROM INVOICE_ITEM;
-+-----------+------+----------+
-| INV_ID    | P_ID | QUANTITY |
-+-----------+------+----------+
-|     16031 |  221 |       15 |
-|     16031 |  223 |       20 |
-|        31 |  224 |       12 |
-|  98898769 |  221 |        2 |
-|     16033 |  228 |        2 |
-|        31 |  225 |        1 |
-|    310000 |  227 |        3 |
-|  98898769 |  225 |        1 |
-|    310000 |  221 |        1 |
-| 988956322 |  226 |        3 |
-|    503235 |  223 |        2 |
-|    598432 |  222 |        3 |
-+-----------+------+----------+
-12 rows in set (0.00 sec)
 
 
 
