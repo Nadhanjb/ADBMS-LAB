@@ -204,7 +204,7 @@ mysql> SELECT *FROM INVOICE_MASTER;
 
 
 
-INVOICE_MASTER TABLE
+INVOICE_ITEM TABLE
 --------------------
 
 
