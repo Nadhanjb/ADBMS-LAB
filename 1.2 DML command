@@ -103,7 +103,7 @@ Query OK, 1 row affected (0.04 sec)
 mysql> INSERT INTO PRODUCT VALUES(224,'CHAIR',1000);
 Query OK, 1 row affected (0.09 sec)
 
-mysql> INSERT INTO PRODUCT VALUES(225,'MANGO PICKLE',80);
+mysql> INSERT INTO PRODUCT VALUES(225,'MANGO PICKLE',2499);
 Query OK, 1 row affected (0.06 sec)
 
 mysql> INSERT INTO PRODUCT VALUES(226,'SASSFARAS TOP',68);
@@ -125,7 +125,7 @@ mysql> SELECT *FROM PRODUCT;
 |  222 | NIRAPARA PUTTU PODI |    28 |
 |  223 | PEN(TECHNO TIP)     |    10 |
 |  224 | CHAIR               |  1000 |
-|  225 | MANGO PICKLE        |    80 |
+|  225 | MANGO PICKLE        |  2499 |
 |  226 | SASSFARAS TOP       |    68 |
 |  227 | TANG POWDER         |   180 |
 |  228 | AMUL MILK POWDER    |   580 |
@@ -186,7 +186,7 @@ mysql> SELECT *FROM INVOICE_ITEM;
 +--------+------+----------+
 7 rows in set (0.01 sec)
 
-------------------*********----------------------
+------------------*********-----------**********--------------
 
  b)DML COMMANDS- UPDATE
  
@@ -194,4 +194,26 @@ mysql> SELECT *FROM INVOICE_ITEM;
 
  1) Update the price of a particular product. 
                      
+mysql>  UPDATE PRODUCT SET PRICE=74 WHERE P_ID=225;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    41 |
+|  222 | NIRAPARA PUTTU PODI |    28 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1000 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    68 |
+|  227 | TANG POWDER         |   180 |
+|  228 | AMUL MILK POWDER    |   580 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
+2) Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
 
