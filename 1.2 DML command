@@ -186,6 +186,12 @@ mysql> SELECT *FROM INVOICE_ITEM;
 +--------+------+----------+
 7 rows in set (0.01 sec)
 
+------------------*********----------------------
 
+ b)DML COMMANDS- UPDATE
+ 
+ 
 
+ 1) Update the price of a particular product. 
+                     
 
