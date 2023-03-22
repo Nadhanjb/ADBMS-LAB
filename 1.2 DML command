@@ -165,9 +165,26 @@ INVOICE_ITEM TABLE
 --------------------
 
 
+mysql> INSERT INTO INVOICE_ITEM VALUES(111,221,15),(344,223,20),(816,227,12),(958,221,2),(355,228,2),(915,225,1),(165,227,3);
+Query OK, 7 rows affected (0.09 sec)
 
 
+Records: 7  Duplicates: 0  Warnings: 0
 
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    111 |  221 |       15 |
+|    344 |  223 |       20 |
+|    816 |  227 |       12 |
+|    958 |  221 |        2 |
+|    355 |  228 |        2 |
+|    915 |  225 |        1 |
+|    165 |  227 |        3 |
++--------+------+----------+
+7 rows in set (0.01 sec)
 
 
 
