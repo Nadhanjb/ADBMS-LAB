@@ -51,16 +51,16 @@ mysql> SELECT *FROM STUDENT;
 CUSTOMER TABLE
 --------------
 
-mysql> INSERT INTO CUSTOMER VALUES(100,'Neda','Thamarassery','Kozhikode',9656600778);
+mysql> INSERT INTO CUSTOMER VALUES(100,'Neda','Thamarassery','Kozhikode',965660077);
 Query OK, 1 row affected (0.04 sec)
 
 mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(102,'Vishnu','Thamarassery','Kozhikode');
 Query OK, 1 row affected (0.06 sec)
 
-mysql> INSERT INTO CUSTOMER VALUES(106,'Hiba','Perinthalmanna','Palakkad',8713090012);
+mysql> INSERT INTO CUSTOMER VALUES(106,'Hiba','Perinthalmanna','Palakkad',871309001);
 Query OK, 1 row affected (0.06 sec)
 
-mysql> INSERT INTO CUSTOMER VALUES(108,'Huda','Padinjarathara','Wayanad',8813090013);
+mysql> INSERT INTO CUSTOMER VALUES(108,'Huda','Padinjarathara','Wayanad',881309001);
 Query OK, 1 row affected (0.06 sec)
 
 mysql> INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(110,'Niba','Irittyy','Idukki');
@@ -76,10 +76,10 @@ mysql> SELECT *FROM CUSTOMER;
 +-----+--------+----------------+-----------+------------+
 | ID  | NAME   | ADDRESS        | CITY      | PH_NO      |
 +-----+--------+----------------+-----------+------------+
-| 100 | Neda   | Thamarassery   | Kozhikode | 9656600778 |
+| 100 | Neda   | Thamarassery   | Kozhikode |  965660077 |
 | 102 | Vishnu | Thamarassery   | Kozhikode |       NULL |
-| 106 | Hiba   | Perinthalmanna | Palakkad  | 8713090012 |
-| 108 | Huda   | Padinjarathara | Wayanad   | 8813090013 |
+| 106 | Hiba   | Perinthalmanna | Palakkad  |  871309001 |
+| 108 | Huda   | Padinjarathara | Wayanad   |  881309001 |
 | 110 | Niba   | Iritty         | Idukki    |       NULL |
 | 112 | Arun   | Pattikkad      | Alappuzha |       NULL |
 | 114 | Abin   | Irinjalakkuda  | Kannur    |       NULL |
@@ -103,13 +103,13 @@ Query OK, 1 row affected (0.04 sec)
 mysql> INSERT INTO PRODUCT VALUES(224,'CHAIR',1000);
 Query OK, 1 row affected (0.09 sec)
 
-mysql> INSERT INTO PRODUCT VALUES(225,'MANGO PICKLE',2499);
+mysql> INSERT INTO PRODUCT VALUES(225,'MANGO PICKLE',73);
 Query OK, 1 row affected (0.06 sec)
 
 mysql> INSERT INTO PRODUCT VALUES(226,'SASSFARAS TOP',68);
 Query OK, 1 row affected (0.05 sec)
 
-mysql> INSERT INTO PRODUCT VALUES(227,'TANG POWDER',180);0
+mysql> INSERT INTO PRODUCT VALUES(227,'TANG POWDER',180);
 Query OK, 1 row affected (0.06 sec)
 
 mysql> INSERT INTO PRODUCT VALUES(228,'AMUL MILK POWDER',580);
@@ -125,7 +125,7 @@ mysql> SELECT *FROM PRODUCT;
 |  222 | NIRAPARA PUTTU PODI |    28 |
 |  223 | PEN(TECHNO TIP)     |    10 |
 |  224 | CHAIR               |  1000 |
-|  225 | MANGO PICKLE        |  2499 |
+|  225 | MANGO PICKLE        |    73 |
 |  226 | SASSFARAS TOP       |    68 |
 |  227 | TANG POWDER         |   180 |
 |  228 | AMUL MILK POWDER    |   580 |
@@ -194,25 +194,7 @@ mysql> SELECT *FROM INVOICE_ITEM;
 
  1) Update the price of a particular product. 
                      
-mysql>  UPDATE PRODUCT SET PRICE=74 WHERE P_ID=225;
-Query OK, 1 row affected (0.15 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
-
-mysql> SELECT *FROM PRODUCT;
-+------+---------------------+-------+
-| P_ID | P_NAME              | PRICE |
-+------+---------------------+-------+
-|  221 | NIRAPARA MATTA RICE |    41 |
-|  222 | NIRAPARA PUTTU PODI |    28 |
-|  223 | PEN(TECHNO TIP)     |    10 |
-|  224 | CHAIR               |  1000 |
-|  225 | MANGO PICKLE        |    74 |
-|  226 | SASSFARAS TOP       |    68 |
-|  227 | TANG POWDER         |   180 |
-|  228 | AMUL MILK POWDER    |   580 |
-+------+---------------------+-------+
-8 rows in set (0.00 sec)
 
 
 2) Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
