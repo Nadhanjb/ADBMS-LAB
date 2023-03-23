@@ -548,3 +548,4 @@ mysql> SELECT *FROM INVOICE_MASTER;
 |    958 |     100 | 2023-12-29 |
 +--------+---------+------------+
 1 row in set (0.00 sec)
+//VERIFIED
