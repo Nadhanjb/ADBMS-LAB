@@ -160,12 +160,32 @@ mysql> SELECT USER FROM mysql.user;
  ->Give insert and select privilege to user 1 on customer table in the invoice database.
            
            mysql> GRANT INSERT,SELECT ON CUSTOMER TO nadha@'localhost';
-           Query OK, 0 rows affected (0.11 sec)
-        
+           Query OK, 0 rows affected (0.11 sec)mysql> SHOW GRANTS FOR 'nadha'@'localhost';
+           +---------------------------------------------------------------------+
+           | Grants for nadha@localhost                                          |
+           +---------------------------------------------------------------------+
+           | GRANT USAGE ON *.* TO `nadha`@`localhost`                           |
+           | GRANT SELECT, INSERT ON `INVOICE`.`CUSTOMER` TO `nadha`@`localhost` |
+           +---------------------------------------------------------------------+
+           2 rows in set (0.00 sec)
+
+  
  ->Give update and delete privilege to user 2 on all tables in the invoice database.
  
            mysql>  GRANT UPDATE,DELETE ON INVOICE.* TO nadha_najeeb@'localhost';
-           Query OK, 0 rows affected (0.20 sec)
+           Query OK, 0 rows affected (0.20 sec)mysql> SHOW GRANTS FOR 'nadha_najeeb'@'localhost';
+           +-------------------------------------------------------------------+
+           | Grants for nadha_najeeb@localhost                                 |
+           +-------------------------------------------------------------------+
+           | GRANT USAGE ON *.* TO `nadha_najeeb`@`localhost`                  |
+           | GRANT UPDATE, DELETE ON `INVOICE`.* TO `nadha_najeeb`@`localhost` |
+           +-------------------------------------------------------------------+
+           2 rows in set (0.00 sec)
+
+
+           
+           
+           
   
  2)REVOKE
  
@@ -175,6 +195,13 @@ mysql> SELECT USER FROM mysql.user;
           mysql> REVOKE DELETE ON INVOICE.* FROM nadha_najeeb@'localhost';
           Query OK, 0 rows affected (0.19 sec)
 
-         
+          mysql> SHOW GRANTS FOR 'nadha_najeeb'@'localhost';
+          +-----------------------------------------------------------+
+          | Grants for nadha_najeeb@localhost                         |
+          +-----------------------------------------------------------+
+          | GRANT USAGE ON *.* TO `nadha_najeeb`@`localhost`          |
+          | GRANT UPDATE ON `INVOICE`.* TO `nadha_najeeb`@`localhost` |
+          +-----------------------------------------------------------+
+          2 rows in set (0.00 sec)
 
 //SHOW GRANTS
