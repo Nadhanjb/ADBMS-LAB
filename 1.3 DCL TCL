@@ -123,7 +123,7 @@ mysql>  SELECT * FROM EMPLOYEE;
 6 rows in set (0.00 sec)
 
 
-
+----------------------------*******************************------------------------------
 
 
 b) DCL COMMAND
@@ -131,11 +131,34 @@ b) DCL COMMAND
  Create two users user1, user2
  
  
+ mysql> CREATE USER nadha@'localhost' IDENTIFIED BY 'nadha';
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> CREATE USER nadha_najeeb@'localhost' IDENTIFIED BY 'nadha2001';
+Query OK, 0 rows affected (0.10 sec)
+
+
+
  1)GRANT
-           ->Give insert and select privilege to user 1 on customer table in the invoice database.
-           ->Give update and delete privilege to user 2 on all tables in the invoice database.
+ 
+ 
+ ->Give insert and select privilege to user 1 on customer table in the invoice database.
+           
+           mysql> GRANT INSERT,SELECT ON CUSTOMER TO nadha@'localhost';
+           Query OK, 0 rows affected (0.11 sec)
+        
+ ->Give update and delete privilege to user 2 on all tables in the invoice database.
+ 
+           mysql>  GRANT UPDATE,DELETE ON INVOICE.* TO nadha_najeeb@'localhost';
+           Query OK, 0 rows affected (0.20 sec)
+  
  2)REVOKE
-           ->Remove delete privilege of user 2.
+ 
 
+ ->Remove delete privilege of user 2.
+  
+          mysql> REVOKE DELETE ON INVOICE.* FROM nadha_najeeb@'localhost';
+          Query OK, 0 rows affected (0.19 sec)
 
+         
 
