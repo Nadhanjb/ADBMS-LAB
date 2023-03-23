@@ -193,6 +193,23 @@ B) DML COMMANDS- UPDATE
  
 
  1) Update the price of a particular product. 
+ 
+ mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    41 |
+|  222 | NIRAPARA PUTTU PODI |    28 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1000 |
+|  225 | MANGO PICKLE        |    73 |
+|  226 | SASSFARAS TOP       |    68 |
+|  227 | TANG POWDER         |   180 |
+|  228 | AMUL MILK POWDER    |   580 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+ 
+ 
                      
  mysql>  UPDATE PRODUCT SET PRICE=195 WHERE P_ID=227;
  Query OK, 1 row affected (0.10 sec)
@@ -218,6 +235,22 @@ B) DML COMMANDS- UPDATE
 
 2) Change the name of city ‘Kozhikode’ to ‘Calicut’ in the customer table. 
 
+mysql> SELECT *FROM CUSTOMER;
++-----+--------+----------------+-----------+------------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO      |
++-----+--------+----------------+-----------+------------+
+| 100 | Neda   | Thamarassery   | Kozhikode |  965660077 |
+| 102 | Vishnu | Thamarassery   | Kozhikode |       NULL |
+| 106 | Hiba   | Perinthalmanna | Palakkad  |  871309001 |
+| 108 | Huda   | Padinjarathara | Wayanad   |  881309001 |
+| 110 | Niba   | Iritty         | Idukki    |       NULL |
+| 112 | Arun   | Pattikkad      | Alappuzha |       NULL |
+| 114 | Abin   | Irinjalakkuda  | Kannur    |       NULL |
++-----+--------+----------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+
+
 
 mysql> UPDATE CUSTOMER SET CITY='Calicut' WHERE CITY='Kozhikode';
 Query OK, 2 rows affected (0.08 sec)
@@ -239,6 +272,21 @@ mysql> SELECT *FROM CUSTOMER;
 
 
 3) Update all prices with 2% of its original price
+
+ mysql> SELECT *FROM PRODUCT;
+ +------+---------------------+-------+
+ | P_ID | P_NAME              | PRICE |
+ +------+---------------------+-------+
+ |  221 | NIRAPARA MATTA RICE |    41 |
+ |  222 | NIRAPARA PUTTU PODI |    28 |
+ |  223 | PEN(TECHNO TIP)     |    10 |
+ |  224 | CHAIR               |  1000 |
+ |  225 | MANGO PICKLE        |    73 |
+ |  226 | SASSFARAS TOP       |    68 |
+ |  227 | TANG POWDER         |   195 |
+ |  228 | AMUL MILK POWDER    |   580 |
+ +------+---------------------+-------+
+ 8 rows in set (0.01 sec)
 
 
 mysql> UPDATE PRODUCT SET PRICE=PRICE+(PRICE*2/100);
@@ -264,6 +312,21 @@ mysql> SELECT *FROM PRODUCT;
 
 4) Change the address, city, phone number of a particular customer. 
 
+
+mysql> SELECT *FROM CUSTOMER;
++-----+--------+----------------+-----------+-----------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO     |
++-----+--------+----------------+-----------+-----------+
+| 100 | Neda   | Thamarassery   | Calicut   | 965660077 |
+| 102 | Vishnu | Thamarassery   | Calicut   |      NULL |
+| 106 | Hiba   | Perinthalmanna | Palakkad  | 871309001 |
+| 108 | Huda   | Padinjarathara | Wayanad   | 881309001 |
+| 110 | Niba   | Irittyy        | Idukki    |      NULL |
+| 112 | Arun   | Pattikkaad     | Alappuzha |      NULL |
+| 114 | Abin   | Irinjalakkuda  | Kannur    |      NULL |
++-----+--------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
 mysql>  UPDATE CUSTOMER SET ADDRESS='Pantheeerpadam',CITY='Kottaym',PH_NO=953213456 WHERE ID=106;
 Query OK, 1 row affected (0.11 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -284,6 +347,20 @@ mysql> SELECT *FROM CUSTOMER;
 
 
 5) Change the quantity of a purchased product of any inv_id.
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    111 |  221 |       15 |
+|    344 |  223 |       20 |
+|    816 |  227 |       12 |
+|    958 |  221 |        2 |
+|    355 |  228 |        2 |
+|    915 |  225 |        1 |
+|    165 |  227 |        3 |
++--------+------+----------+
+7 rows in set (0.01 sec)
 
 mysql>  UPDATE INVOICE_ITEM SET QUANTITY=20 WHERE INV_ID=915 AND P_ID=225;
 Query OK, 1 row affected (0.11 sec)
@@ -313,6 +390,20 @@ C)  DML COMMAND- DELETE
 1) Delete the record of customer id ‘108’
 
 
+mysql> SELECT *FROM CUSTOMER;
++-----+--------+----------------+-----------+-----------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO     |
++-----+--------+----------------+-----------+-----------+
+| 100 | Neda   | Thamarassery   | Calicut   | 965660077 |
+| 102 | Vishnu | Thamarassery   | Calicut   |      NULL |
+| 106 | Hiba   | Pantheeerpadam | Kottaym   | 953213456 |
+| 108 | Huda   | Padinjarathara | Wayanad   | 881309001 |
+| 110 | Niba   | Irittyy        | Idukki    |      NULL |
+| 112 | Arun   | Pattikkaad     | Alappuzha |      NULL |
+| 114 | Abin   | Irinjalakkuda  | Kannur    |      NULL |
++-----+--------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
 mysql> DELETE FROM INVOICE_ITEM WHERE INV_ID=344;
 Query OK, 1 row affected (0.10 sec)
 
@@ -339,6 +430,20 @@ mysql> SELECT *FROM CUSTOMER;
 
 2) Delete all purchase details of items its quantity less than 2
 
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    111 |  221 |       15 |
+|    344 |  223 |       20 |
+|    816 |  227 |       12 |
+|    958 |  221 |        2 |
+|    355 |  228 |        2 |
+|    915 |  225 |        1 |
+|    165 |  227 |        3 |
++--------+------+----------+
+
+
 mysql>  DELETE FROM INVOICE_ITEM WHERE QUANTITY<2;
 Query OK, 0 rows affected (0.01 sec)
 
@@ -358,6 +463,20 @@ mysql> SELECT *FROM INVOICE_ITEM;
 
 3) Delete the purchase details of product ‘amul milk powder’ in the inv_id ‘355’
 
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    111 |  221 |       15 |
+|    816 |  227 |       12 |
+|    958 |  221 |        2 |
+|    355 |  228 |        2 |
+|    915 |  225 |       20 |
+|    165 |  227 |        3 |
++--------+------+----------+
+6 rows in set (0.01 sec)
+
+
 mysql> DELETE FROM INVOICE_ITEM WHERE INV_ID=355 AND P_ID=228;
 Query OK, 1 row affected (0.12 sec)
 
@@ -376,6 +495,19 @@ mysql> SELECT *FROM INVOICE_ITEM;
 
 
 4) Delete details of customer who does not have phone number.
+
+mysql> SELECT *FROM CUSTOMER;
++-----+--------+----------------+-----------+-----------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO     |
++-----+--------+----------------+-----------+-----------+
+| 100 | Neda   | Thamarassery   | Calicut   | 965660077 |
+| 102 | Vishnu | Thamarassery   | Calicut   |      NULL |
+| 106 | Hiba   | Pantheeerpadam | Kottaym   | 953213456 |
+| 110 | Niba   | Irittyy        | Idukki    |      NULL |
+| 112 | Arun   | Pattikkaad     | Alappuzha |      NULL |
+| 114 | Abin   | Irinjalakkuda  | Kannur    |      NULL |
++-----+--------+----------------+-----------+-----------+
+6 rows in set (0.00 sec)
 
 mysql>  DELETE FROM CUSTOMER WHERE PH_NO IS NULL;
 Query OK, 4 rows affected (0.12 sec)
@@ -400,20 +532,22 @@ mysql>  SELECT *FROM STUDENT;
 Empty set (0.00 sec)
 
 
-6) Dmysql> DELETE FROM INVOICE_MASTER WHERE CUST_ID=114;
-Query OK, 0 rows affected (0.00 sec)
+6) Delete Invoice details of a particular customer
 
-mysql>  SELECT *FROM INVOICE_MASTER;
+
+mysql> DELETE FROM INVOICE_ITEM WHERE INV_ID=165;
+Query OK, 1 row affected (0.15 sec)
+
+mysql> DELETE FROM INVOICE_MASTER WHERE CUST_ID=106;
+Query OK, 2 rows affected (0.12 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
 +--------+---------+------------+
 | INV_ID | CUST_ID | INV_DATE   |
 +--------+---------+------------+
-|    115 |     106 | 2023-03-29 |
-|    165 |     106 | 2023-12-12 |
 |    958 |     100 | 2023-12-29 |
 +--------+---------+------------+
-3 rows in set (0.00 sec)
-elete Invoice details of a particular customer
+1 row in set (0.00 sec)
 
 
-
-7) Delete the first two records of INVOICE_ITEM table its purchase quantity is high
+//COMPLETED
