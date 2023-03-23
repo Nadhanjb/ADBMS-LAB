@@ -138,6 +138,21 @@ mysql> CREATE USER nadha_najeeb@'localhost' IDENTIFIED BY 'nadha2001';
 Query OK, 0 rows affected (0.10 sec)
 
 
+mysql> SELECT USER FROM mysql.user;
++------------------+
+| USER             |
++------------------+
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| nadha            |
+| nadha_najeeb     |
+| neda             |
+| root             |
++------------------+
+7 rows in set (0.00 sec)
+
+
 
  1)GRANT
  
