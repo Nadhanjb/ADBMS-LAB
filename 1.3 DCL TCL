@@ -204,4 +204,4 @@ mysql> SELECT USER FROM mysql.user;
           +-----------------------------------------------------------+
           2 rows in set (0.00 sec)
 
-//SHOW GRANTS
+//show grants
