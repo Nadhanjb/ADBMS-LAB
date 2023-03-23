@@ -1,0 +1,138 @@
+                                                1.3
+                                                
+                                                
+a) TCL COMMANDS
+           1.    Commit
+           2.    Rollback
+           3.    Savepoint
+
+1)COMMIT
+
+
+
+mysql> set autocommit=off;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+------+------------+------+----------+
+| emp_id | name | city       | dob  | adhar_no |
++--------+------+------------+------+----------+
+|    111 | NEDA | CALICUT    | 2000 |   123456 |
+|    125 | ANU  | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi | Eranakulam | NULL |  4635647 |
++--------+------+------------+------+----------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO EMPLOYEE(emp_id,name,city,adhar_no) VALUES(348,'vinu','Palakkad',345621);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+------+------------+------+----------+
+| emp_id | name | city       | dob  | adhar_no |
++--------+------+------------+------+----------+
+|    111 | NEDA | CALICUT    | 2000 |   123456 |
+|    125 | ANU  | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi | Eranakulam | NULL |  4635647 |
+|    348 | vinu | Palakkad   | NULL |   345621 |
++--------+------+------------+------+----------+
+5 rows in set (0.00 sec)
+
+
+2) ROLLBACK
+
+
+ysql> DELETE FROM EMPLOYEE WHERE emp_id=111;
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+------+------------+------+----------+
+| emp_id | name | city       | dob  | adhar_no |
++--------+------+------------+------+----------+
+|    125 | ANU  | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi | Eranakulam | NULL |  4635647 |
+|    348 | vinu | Palakkad   | NULL |   345621 |
++--------+------+------------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+------+------------+------+----------+
+| emp_id | name | city       | dob  | adhar_no |
++--------+------+------------+------+----------+
+|    111 | NEDA | CALICUT    | 2000 |   123456 |
+|    125 | ANU  | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi | Eranakulam | NULL |  4635647 |
+|    348 | vinu | Palakkad   | NULL |   345621 |
++--------+------+------------+------+----------+
+5 rows in set (0.00 sec)
+
+
+
+3) SAVEPOINT
+
+
+mysql>  INSERT INTO EMPLOYEE VALUES(222,'RiNU','Eranakulam',2005,78355);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  SAVEPOINT EMP1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES(333,'Roobi','thrissur',2014,85678);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  SAVEPOINT EMP2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+-------+------------+------+----------+
+| emp_id | name  | city       | dob  | adhar_no |
++--------+-------+------------+------+----------+
+|    111 | NEDA  | CALICUT    | 2000 |   123456 |
+|    125 | ANU   | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA  | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi  | Eranakulam | NULL |  4635647 |
+|    348 | vinu  | Palakkad   | NULL |   345621 |
+|    222 | RiNU  | Eranakulam | 2005 |    78355 |
+|    333 | Roobi | thrissur   | 2014 |    85678 |
++--------+-------+------------+------+----------+
+7 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO EMP1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  SELECT * FROM EMPLOYEE;
++--------+------+------------+------+----------+
+| emp_id | name | city       | dob  | adhar_no |
++--------+------+------------+------+----------+
+|    111 | NEDA | CALICUT    | 2000 |   123456 |
+|    125 | ANU  | KOLLAM     | 2034 |  1111111 |
+|    128 | NEDA | THRISSUR   | 1980 |  9876543 |
+|    289 | Abhi | Eranakulam | NULL |  4635647 |
+|    348 | vinu | Palakkad   | NULL |   345621 |
+|    222 | RiNU | Eranakulam | 2005 |    78355 |
++--------+------+------------+------+----------+
+6 rows in set (0.00 sec)
+
+
+
+
+
+b) DCL COMMAND
+
+ Create two users user1, user2
+ 
+ 
+ 1)GRANT
+           ->Give insert and select privilege to user 1 on customer table in the invoice database.
+           ->Give update and delete privilege to user 2 on all tables in the invoice database.
+ 2)REVOKE
+           ->Remove delete privilege of user 2.
