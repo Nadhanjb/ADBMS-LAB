@@ -177,3 +177,4 @@ mysql> SELECT USER FROM mysql.user;
 
          
 
+//SHOW GRANTS
