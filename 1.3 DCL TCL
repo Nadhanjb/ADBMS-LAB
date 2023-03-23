@@ -136,3 +136,6 @@ b) DCL COMMAND
            ->Give update and delete privilege to user 2 on all tables in the invoice database.
  2)REVOKE
            ->Remove delete privilege of user 2.
+
+
+
