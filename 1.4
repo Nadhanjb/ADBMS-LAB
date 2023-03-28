@@ -1,0 +1,423 @@
+                                     -----------1.4-------------
+
+
+
+1)List all customer details.
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+2)List pname, price of all products.
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
+
+mysql> SELECT P_ID,P_NAME FROM PRODUCT;
++------+---------------------+
+| P_ID | P_NAME              |
++------+---------------------+
+|  221 | NIRAPARA MATTA RICE |
+|  222 | NIRAPARA PUTTU PODI |
+|  223 | PEN(TECHNO TIP)     |
+|  224 | CHAIR               |
+|  225 | MANGO PICKLE        |
+|  226 | SASSFARAS TOP       |
+|  227 | TANG POWDER         |
+|  228 | AMUL MILK POWDER    |
++------+---------------------+
+8 rows in set (0.00 sec)
+
+
+3)List all invoice items, avoid duplicates.
+
+
+mysql> SELECT  INV_ID FROM INVOICE_ITEM;
++--------+
+| INV_ID |
++--------+
+|    456 |
+|    874 |
+|    874 |
+|    958 |
+|    958 |
+|    958 |
+|    999 |
++--------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT DISTINCT INV_ID FROM INVOICE_ITEM;
++--------+
+| INV_ID |
++--------+
+|    456 |
+|    874 |
+|    958 |
+|    999 |
++--------+
+4 rows in set (0.00 sec)
+
+
+4)List product price between 50rs and 150rs
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+mysql> SELECT * FROM PRODUCT WHERE PRICE BETWEEN 50 AND 150;
++------+---------------+-------+
+| P_ID | P_NAME        | PRICE |
++------+---------------+-------+
+|  225 | MANGO PICKLE  |    74 |
+|  226 | SASSFARAS TOP |    69 |
++------+---------------+-------+
+2 rows in set (0.00 sec)
+
+
+5)List the customer details who lives in ‘Eranakulam’,’Calicut’
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+mysql> SELECT *FROM CUSTOMER WHERE CITY='Eranakulam' OR CITY='Calicut';
++-----+------+--------------+------------+-----------+
+| ID  | NAME | ADDRESS      | CITY       | PH_NO     |
++-----+------+--------------+------------+-----------+
+| 100 | Neda | Thamarassery | Calicut    | 965660077 |
+| 130 | Binu | Velimanna    | Eranakulam |  78635564 |
++-----+------+--------------+------------+-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+6)List the invoice details from 1st January 2023 to 15th March 2023
+
+mysql> SELECT * FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.00 sec)
+
+
+
+
+
+mysql> SELECT * FROM INVOICE_MASTER WHERE INV_DATE BETWEEN '2023-01-01' AND '2023-03-15';
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    876 |     150 | 2023-01-09 |
++--------+---------+------------+
+2 rows in set (0.01 sec)
+
+
+7)List the customer details who not live in ‘Calicut’
+
+
+mysql> SELECT * FROM CUSTOMER ;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE CITY!='Calicut';
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+7 rows in set (0.00 sec)
+
+
+
+8)List the customers who have no phone number.
+
+mysql> SELECT * FROM CUSTOMER ;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM CUSTOMER WHERE PH_NO IS NULL;
++-----+------+------------+-----------+-------+
+| ID  | NAME | ADDRESS    | CITY      | PH_NO |
++-----+------+------------+-----------+-------+
+| 112 | Arun | Pattikkaad | Alappuzha |  NULL |
++-----+------+------------+-----------+-------+
+1 row in set (0.00 sec)
+
+
+9)Display customer names in descending order.
+
+mysql> SELECT NAME FROM CUSTOMER;
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Arun   |
+| Anil   |
+| Binu   |
+| Ramesh |
+| Hemil  |
++--------+
+8 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER ORDER BY NAME DESC;
++--------+
+| NAME   |
++--------+
+| Ramesh |
+| Neda   |
+| Hiba   |
+| Hemil  |
+| Binu   |
+| Arun   |
+| Anu    |
+| Anil   |
++--------+
+8 rows in set (0.00 sec)
+
+
+10)Display the customer details sorted in ascending by city and descending by names.
+
+
+mysql> SELECT * FRODisplay the customer details sorted in ascending by city and descending by names.M CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMER ORDER BY CITY ASC,NAME DESC;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+11)Find the customer names start with ‘A’.
+
+mysql> SELECT NAME FROM CUSTOMER;
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Arun   |
+| Anil   |
+| Binu   |
+| Ramesh |
+| Hemil  |
++--------+
+8 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A%';
++------+
+| NAME |
++------+
+| Anu  |
+| Arun |
+| Anil |
++------+
+3 rows in set (0.00 sec)
+
+
+12) Find the customer names who have ‘e’ or ‘a’ in them.
+
+
+mysql> SELECT NAME FROM CUSTOMER;
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Arun   |
+| Anil   |
+| Binu   |
+| Ramesh |
+| Hemil  |
++--------+
+8 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '%a%' OR NAME LIKE '%e%';
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Arun   |
+| Anil   |
+| Ramesh |
+| Hemil  |
++--------+
+7 rows in set (0.00 sec)
+
+
+
+13)Find the customer names who have at least 3 characters.
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '___%';
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Arun   |
+| Anil   |
+| Binu   |
+| Ramesh |
+| Hemil  |
++--------+
+8 rows in set (0.02 sec)
+
+
+14)List the names of customers their names have ‘r’ in second position.
+
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '_r%';
++------+
+| NAME |
++------+
+| Arun |
++------+
+1 row in set (0.00 sec)
+
+15) Find the customer names start with ‘a’ and are at least 3 characters in length
+
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A__%';
++------+
+| NAME |
++------+
+| Anu  |
+| Arun |
+| Anil |
++------+
+3 rows in set (0.00 sec)
+
+
+
