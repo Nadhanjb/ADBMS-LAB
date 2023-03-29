@@ -205,3 +205,4 @@ mysql> SELECT USER FROM mysql.user;
           2 rows in set (0.00 sec)
 
 //show grants
+//VERIFIED
