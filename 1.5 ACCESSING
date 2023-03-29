@@ -184,6 +184,65 @@ mysql> SELECT *FROM PRODUCT WHERE P_ID NOT IN(SELECT P_ID FROM INVOICE_ITEM);
 5) List the customer names who purchased the items ‘chair’ and ‘Tang powder’.
 
 
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.02 sec)
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.02 sec)
+
+
 
 mysql> SELECT NAME FROM CUSTOMER WHERE ID IN(SELECT CUST_ID FROM INVOICE_MASTER
 WHERE  INV_ID IN(SELECT INV_ID FROM INVOICE_ITEM WHERE P_ID IN(SELECT P_ID FROM
@@ -201,6 +260,67 @@ PRODUCT WHERE P_NAME='CHAIR'OR (SELECT P_ID FROM PRODUCT WHERE P_NAME='TANG POWD
 
 6) Display the purchased product details of the customer ’Neda’.
 
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.02 sec)
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.02 sec)
+
+
+
 mysql> SELECT * FROM PRODUCT WHERE P_ID IN(SELECT P_ID FROM INVOICE_ITEM WHERE INV_ID IN(SELECT INV_ID FROM INVOICE_MASTER WHERE CUST_ID IN(SELECT Id FROM CUSTOMER WHERE NAME='Neda')));
 +------+---------------------+-------+
 | P_ID | P_NAME              | PRICE |
@@ -214,6 +334,52 @@ mysql> SELECT * FROM PRODUCT WHERE P_ID IN(SELECT P_ID FROM INVOICE_ITEM WHERE I
 
 
 7)List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result
+
+
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottaym    | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kasargode  | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.02 sec)
+
 
 
 
