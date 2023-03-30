@@ -1,0 +1,45 @@
+                                               1.6 VIEWS
+
+1) 1. Create a view for customers who have purchased products.
+
+
+
+mysql> CREATE VIEW CUST_VIEW AS SELECT NAME FROM CUSTOMER WHERE ID IN(SELECT CUST_ID FROM INVOICE_MASTER);
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> SELECT *FROM CUST_VIEW;
++--------+
+| NAME   |
++--------+
+| Neda   |
+| Hiba   |
+| Anu    |
+| Anil   |
+| Ramesh |
+| Hemil  |
++--------+
+6 rows in set (0.03 sec)
+
+
+
+
+2) Create a view for invoice products[cust_name,  inv_id, product_id, quantity]
+
+
+mysql> CREATE VIEW VIEW_INVPRODUCT AS SELECT CUSTOMER.NAME,INVOICE_MASTER.INV_ID,PRODUCT.P_ID,INVOICE_ITEM.QUANTITY FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.P_ID=INVOICE_ITEM.P_ID;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> SELECT *FROM VIEW_INVPRODUCT;
++-------+--------+------+----------+
+| NAME  | INV_ID | P_ID | QUANTITY |
++-------+--------+------+----------+
+| Neda  |    958 |  221 |        2 |
+| Anil  |    456 |  223 |        4 |
+| Neda  |    958 |  224 |        5 |
+| Hemil |    874 |  226 |       50 |
+| Hiba  |    999 |  227 |        5 |
+| Neda  |    958 |  228 |       15 |
+| Hemil |    874 |  228 |       15 |
++-------+--------+------+----------+
+7 rows in set (0.01 sec)
+
