@@ -1,0 +1,130 @@
+                                        1.7 OPTIMIZING DATABASE:  (GROUP BY, AGGREGATE FUNCTIONS)
+
+
+CUSTOMER TABLE
+--------------
+
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottayam   | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kottayam   | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+PRODUCT TABLE
+-------------
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+1) List product name, price except pen on price order.
+
+
+
+mysql>  SELECT P_NAME,PRICE FROM PRODUCT WHERE P_NAME!='PEN(TECHNO TIP)' ORDER BY PRICE ASC;
+
++---------------------+-------+
+| P_NAME              | PRICE |
++---------------------+-------+
+| NIRAPARA PUTTU PODI |    29 |
+| NIRAPARA MATTA RICE |    42 |
+| SASSFARAS TOP       |    69 |
+| MANGO PICKLE        |    74 |
+| TANG POWDER         |   199 |
+| AMUL MILK POWDER    |   592 |
+| CHAIR               |  1020 |
++---------------------+-------+
+7 rows in set (0.00 sec)
+
+
+2) Find minimum, maximum and average price of products.
+
+
+mysql> SELECT MIN(PRICE),MAX(PRICE),AVG(PRICE) FROM PRODUCT;
+
++------------+------------+------------+
+| MIN(PRICE) | MAX(PRICE) | AVG(PRICE) |
++------------+------------+------------+
+|         10 |       1020 |   254.3750 |
++------------+------------+------------+
+1 row in set (0.01 sec)
+
+
+3) Find number of customers in each city.
+
+
+
+mysql> SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY;
++----------+------------+
+| COUNT(*) | CITY       |
++----------+------------+
+|        1 | Calicut    |
+|        3 | Kottayam   |
+|        1 | Iduuki     |
+|        1 | Alappuzha  |
+|        1 | Eranakulam |
+|        1 | Idukki     |
++----------+------------+
+6 rows in set (0.00 sec)
+
+
+
+4) Find number of customers in each city, only include city with more than 3 customers.
+
+
+mysql> SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY HAVING COUNT(*)>2;
++----------+----------+
+| COUNT(*) | CITY     |
++----------+----------+
+|        3 | Kottayam |
++----------+----------+
+1 row in set (0.01 sec)
+
+
+
+
+5) Show data as displayed ‘who, where’ Eg: ‘customer1 lives in ekm’.
+
+
+mysql> SELECT CONCAT(NAME, " lives in ", CITY) AS CUST_INFO FROM CUSTOMER;
++--------------------------+
+| CUST_INFO                |
++--------------------------+
+| Neda lives in Calicut    |
+| Hiba lives in Kottayam   |
+| Anu lives in Iduuki      |
+| Arun lives in Alappuzha  |
+| Anil lives in Kottayam   |
+| Binu lives in Eranakulam |
+| Ramesh lives in Idukki   |
+| Hemil lives in Kottayam  |
++--------------------------+
+8 rows in set (0.00 sec)
+
+
