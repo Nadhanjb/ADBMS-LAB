@@ -1,0 +1,155 @@
+                                         1.8 OPTIMIZING DATABASE-2
+
+CUSTOMER TABLE
+--------------
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottayam   | 953213456 |
+|  110 | Anu    | Thekkadi       | Iduuki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kottayam   | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+
+PRODUCT TABLE
+-------------
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+
+
+
+
+INVOICE_ITEM TABLE
+------------------
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+
+
+INVOICE_MASTER TABLE
+--------------------
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.00 sec)
+
+
+
+
+1) List the product name and quantity of invoice items.
+
+
+mysql> SELECT  PRODUCT.P_NAME,INVOICE_ITEM.QUANTITY FROM PRODUCT INNER JOIN INVOICE_ITEM ON PRODUCT.P_ID=INVOICE_ITEM.P_ID;
++---------------------+----------+
+| P_NAME              | QUANTITY |
++---------------------+----------+
+| NIRAPARA MATTA RICE |        2 |
+| CHAIR               |        5 |
+| AMUL MILK POWDER    |       15 |
+| AMUL MILK POWDER    |       15 |
+| SASSFARAS TOP       |       50 |
+| TANG POWDER         |        5 |
+| PEN(TECHNO TIP)     |        4 |
++---------------------+----------+
+7 rows in set (0.00 sec)
+
+
+
+
+2) Display invoice details of the transaction dated ’27-11-2023’.
+
+
+mysql> SELECT CUSTOMER.NAME,PRODUCT.P_NAME,PRODUCT.PRICE,INVOICE_MASTER.INV_ID,INVOICE_MASTER.INV_DATE,INVOICE_ITEM.QUANTITY FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.P_ID=INVOICE_ITEM.P_ID WHERE INV_DATE='2023-11-27';
++-------+------------------+-------+--------+------------+----------+
+| NAME  | P_NAME           | PRICE | INV_ID | INV_DATE   | QUANTITY |
++-------+------------------+-------+--------+------------+----------+
+| Anil  | PEN(TECHNO TIP)  |    10 |    456 | 2023-11-27 |        4 |
+| Hemil | AMUL MILK POWDER |   592 |    874 | 2023-11-27 |       15 |
+| Hemil | SASSFARAS TOP    |    69 |    874 | 2023-11-27 |       50 |
++-------+------------------+-------+--------+------------+----------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+3) Display the customer name, product name, invoice date of purchased item ‘chair’.
+
+
+
+mysql>  SELECT CUSTOMER.NAME,PRODUCT.P_NAME,INVOICE_MASTER.INV_DATE FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON INVOICE_ITEM.P_ID=PRODUCT.P_ID WHERE P_NAME="CHAIR";
++------+--------+------------+
+| NAME | P_NAME | INV_DATE   |
++------+--------+------------+
+| Neda | CHAIR  | 2023-12-29 |
++------+--------+------------+
+1 row in set (0.00 sec)
+
+
+
+
+4) Display all customer details and invoice details must include customer has not purchased items.
+
+
+
+mysql> SELECT CUSTOMER.NAME,INVOICE_MASTER.INV_ID,INVOICE_MASTER.INV_DATE,PRODUCT.P_NAME FROM CUSTOMER LEFT JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID LEFT JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.P_ID=INVOICE_ITEM.P_ID;
++-------+--------+------------+---------------------+
+| NAME  | INV_ID | INV_DATE   | P_NAME              |
++-------+--------+------------+---------------------+
+| Neda  |    958 | 2023-12-29 | NIRAPARA MATTA RICE |
+| Neda  |    958 | 2023-12-29 | CHAIR               |
+| Neda  |    958 | 2023-12-29 | AMUL MILK POWDER    |
+| Hemil |    874 | 2023-11-27 | AMUL MILK POWDER    |
+| Hemil |    874 | 2023-11-27 | SASSFARAS TOP       |
+| Hiba  |    999 | 2023-10-13 | TANG POWDER         |
+| Anil  |    456 | 2023-11-27 | PEN(TECHNO TIP)     |
++-------+--------+------------+---------------------+
+7 rows in set (0.00 sec)
+
+
+
