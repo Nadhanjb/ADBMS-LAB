@@ -95,7 +95,7 @@ mysql> SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY;
 
 
 
-4) Find number of customers in each city, only include city with more than 3 customers.
+4) Find number of customers in each city, only include city with more than 2 customers.
 
 
 mysql> SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY HAVING COUNT(*)>2;  //WRONNG QUERY
