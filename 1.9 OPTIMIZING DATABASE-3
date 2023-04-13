@@ -1,0 +1,159 @@
+                                     1.9 OPTIMIZING DATABASE: 
+                        (Using Set, arithmetic, logical and special operators)
+
+
+
+
+CUSTOMER TABLE
+-------------
+
+
+mysql> SELECT *FROM CUSTOMER;
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottayam   | 953213456 |
+|  110 | Anu    | Thekkadi       | Idukki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kottayam   | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+
+PRODUCT TABLE
+-------------
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    42 |
+|  222 | NIRAPARA PUTTU PODI |    29 |
+|  223 | PEN(TECHNO TIP)     |    10 |
+|  224 | CHAIR               |  1020 |
+|  225 | MANGO PICKLE        |    74 |
+|  226 | SASSFARAS TOP       |    69 |
+|  227 | TANG POWDER         |   199 |
+|  228 | AMUL MILK POWDER    |   592 |
++------+---------------------+-------+
+8 rows in set (0.02 sec)
+
+
+
+
+INVOICE_ITEM TABLE
+-------------------
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+
+
+INVOICE_MASTER TABLE
+--------------------
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.01 sec)
+
+
+
+
+
+1) Display customer_id, city  who lives either in ‘Calicut’ or in ‘Idukki’
+
+
+
+mysql> SELECT Id,CITY FROM CUSTOMER WHERE CITY="Calicut" OR CITY="Idukki";
++-----+---------+
+| Id  | CITY    |
++-----+---------+
+| 100 | Calicut |
+| 110 | Idukki  |
+| 150 | Idukki  |
++-----+---------+
+3 rows in set (0.00 sec)
+
+
+
+
+2) Display product details with an updated price amount(new price= old price+5rs)
+
+
+mysql>  UPDATE PRODUCT SET PRICE=PRICE+5;
+Query OK, 8 rows affected (0.12 sec)
+Rows matched: 8  Changed: 8  Warnings: 0
+
+mysql> SELECT *FROM PRODUCT;
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    47 |
+|  222 | NIRAPARA PUTTU PODI |    34 |
+|  223 | PEN(TECHNO TIP)     |    15 |
+|  224 | CHAIR               |  1025 |
+|  225 | MANGO PICKLE        |    79 |
+|  226 | SASSFARAS TOP       |    74 |
+|  227 | TANG POWDER         |   204 |
+|  228 | AMUL MILK POWDER    |   597 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+
+
+3) Display customer details who doesn’t have phone number and lives in ‘Alappuzha’ city (use logical operators)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE PH_NO IS NULL AND CITY="Alappuzha";
++-----+------+------------+-----------+-------+
+| ID  | NAME | ADDRESS    | CITY      | PH_NO |
++-----+------+------------+-----------+-------+
+| 112 | Arun | Pattikkaad | Alappuzha |  NULL |
++-----+------+------------+-----------+-------+
+1 row in set (0.00 sec)
+
+
+
+
+4) List the product names if it finds any records in the invoice items table has quantity =5 (use special operators)
+
+
+mysql> SELECT P_NAME FROM PRODUCT WHERE P_ID IN(SELECT P_ID FROM INVOICE_ITEM WHERE QUANTITY =5);
++-------------+
+| P_NAME      |
++-------------+
+| CHAIR       |
+| TANG POWDER |
++-------------+
+2 rows in set (0.00 sec)
+
+
+
+
