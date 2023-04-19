@@ -1,0 +1,135 @@
+                                          2.1  PL/SQL PROGRAMS- STOREDPROCEDURES 
+
+
+
+1)  Create a procedure to display all tables in the invoice database.
+
+mysql> CREATE PROCEDURE INVOICE1()
+    -> BEGIN
+    ->  SELECT *FROM PRODUCT;
+    ->  SELECT *FROM CUSTOMER;
+    ->  SELECT *FROM INVOICE_ITEM;
+    ->  SELECT *FROM INVOICE_MASTER;
+    -> END
+    -> //
+
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> CALL INVOICE1()
+    -> //
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    47 |
+|  222 | NIRAPARA PUTTU PODI |    34 |
+|  223 | PEN(TECHNO TIP)     |    15 |
+|  224 | CHAIR               |  1025 |
+|  225 | MANGO PICKLE        |    79 |
+|  226 | SASSFARAS TOP       |    74 |
+|  227 | TANG POWDER         |   204 |
+|  228 | AMUL MILK POWDER    |   597 |
++------+---------------------+-------+
+8 rows in set (0.00 sec)
+
++------+--------+----------------+------------+-----------+
+| ID   | NAME   | ADDRESS        | CITY       | PH_NO     |
++------+--------+----------------+------------+-----------+
+|  100 | Neda   | Thamarassery   | Calicut    | 965660077 |
+|  106 | Hiba   | Pantheeerpadam | Kottayam   | 953213456 |
+|  110 | Anu    | Thekkadi       | Idukki     |    567482 |
+|  112 | Arun   | Pattikkaad     | Alappuzha  |      NULL |
+|  120 | Anil   | Thenjippalam   | Kottayam   | 846756243 |
+|  130 | Binu   | Velimanna      | Eranakulam |  78635564 |
+|  150 | Ramesh | Pilakkal       | Idukki     | 111223344 |
+| 1400 | Hemil  | Kanjangad      | Kottayam   | 111223344 |
++------+--------+----------------+------------+-----------+
+8 rows in set (0.00 sec)
+
++--------+------+----------+
+| INV_ID | P_ID | QUANTITY |
++--------+------+----------+
+|    958 |  221 |        2 |
+|    958 |  224 |        5 |
+|    958 |  228 |       15 |
+|    874 |  228 |       15 |
+|    874 |  226 |       50 |
+|    999 |  227 |        5 |
+|    456 |  223 |        4 |
++--------+------+----------+
+7 rows in set (0.02 sec)
+
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|    344 |     100 | 2023-02-18 |
+|    345 |     110 | 2023-03-18 |
+|    456 |     120 | 2023-11-27 |
+|    874 |    1400 | 2023-11-27 |
+|    876 |     150 | 2023-01-09 |
+|    958 |     100 | 2023-12-29 |
+|    999 |     106 | 2023-10-13 |
++--------+---------+------------+
+7 rows in set (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+
+
+2) Create a procedure to find greatest of 3 numbers.
+
+
+mysql> CREATE PROCEDURE GREATEST(A INT,B INT, C INT)
+    -> BEGIN
+    -> IF(A>B) AND (A>C) THEN
+    -> SELECT A AS "GREATEST";
+    -> ELSEIF(B>A) AND (B>C) THEN
+    -> SELECT B AS "GREATEST";
+    -> ELSE
+    -> SELECT C AS "GREATEST";
+    -> END IF;
+    -> END
+    -> //
+
+
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> CALL GREATEST(-10,100,560)
+    -> //
++----------+
+
+
+| GREATEST |
++----------+
+|      560 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+3)  Create a procedure to display invoice details of a particular customer.
+
+
+mysql> CREATE PROCEDURE INV_DETAILS( ABC VARCHAR(20))
+    -> BEGIN
+    -> SELECT CUSTOMER.NAME,INVOICE_MASTER.*,PRODUCT.P_NAME,INVOICE_ITEM.P_ID,INVOICE_ITEM.QUANTITY FROM INVOICE_ITEM INNER JOIN INVOICE_MASTER
+ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.P_ID=INVOICE_ITEM.P_ID INNER JOIN CUSTOMER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID WHERE CUSTOMER.NAME=ABC;
+    -> END
+    -> //
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> CALL INV_DETAILS('Neda');
+    -> //
++------+--------+---------+------------+---------------------+------+----------+
+| NAME | INV_ID | CUST_ID | INV_DATE   | P_NAME              | P_ID | QUANTITY |
++------+--------+---------+------------+---------------------+------+----------+
+| Neda |    958 |     100 | 2023-12-29 | NIRAPARA MATTA RICE |  221 |        2 |
+| Neda |    958 |     100 | 2023-12-29 | CHAIR               |  224 |        5 |
+| Neda |    958 |     100 | 2023-12-29 | AMUL MILK POWDER    |  228 |       15 |
++------+--------+---------+------------+---------------------+------+----------+
+3 rows in set (0.11 sec)
+
+
+
