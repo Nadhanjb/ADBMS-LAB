@@ -18,7 +18,7 @@ mysql> CREATE FUNCTION PRICEIND(PRICE INT) RETURNS VARCHAR(20)
 Query OK, 0 rows affected (0.19 sec)
 
 
-mysql> SELECT P_ID,P_NAME,PRICE,PRICEIND(PRICE) FROM PRODUCT; //
+mysql> SELECT P_ID,P_NAME,PRICE,PRICEIND(PRICE) FROM PRODUCT;  //
 +------+---------------------+-------+-----------------+
 | P_ID | P_NAME              | PRICE | PRICEIND(PRICE) |
 +------+---------------------+-------+-----------------+
