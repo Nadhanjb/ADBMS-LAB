@@ -1,0 +1,36 @@
+                            2.2 PL/SQL PROGRAMS – FUNCTIONS
+
+
+1)  Create a function to calculate price_range(low, medium, high) of each product. If price<=35 indicate as low, upto 200 indicate as medium, and above as high.
+
+mysql> DELIMITER //
+mysql> CREATE FUNCTION PRICEIND(PRICE INT) RETURNS VARCHAR(20)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE PRICE_IND VARCHAR(20);
+    -> IF PRICE<=35 THEN SET PRICE_IND='LOW';
+    -> ELSEIF(PRICE>35 AND PRICE<=200) THEN SET PRICE_IND='MEDIUM';
+    -> ELSEIF PRICE>200 THEN SET PRICE_IND='HIGH';
+    -> END IF;
+    -> RETURN(PRICE_IND);
+    -> END 
+    -> //
+Query OK, 0 rows affected (0.19 sec)
+
+
+mysql> SELECT P_ID,P_NAME,PRICE,PRICEIND(PRICE) FROM PRODUCT; //
++------+---------------------+-------+-----------------+
+| P_ID | P_NAME              | PRICE | PRICEIND(PRICE) |
++------+---------------------+-------+-----------------+
+|  221 | NIRAPARA MATTA RICE |    47 | MEDIUM          |
+|  222 | NIRAPARA PUTTU PODI |    34 | LOW             |
+|  223 | PEN(TECHNO TIP)     |    15 | LOW             |
+|  224 | CHAIR               |  1025 | HIGH            |
+|  225 | MANGO PICKLE        |    79 | MEDIUM          |
+|  226 | SASSFARAS TOP       |    74 | MEDIUM          |
+|  227 | TANG POWDER         |   204 | HIGH            |
+|  228 | AMUL MILK POWDER    |   597 | HIGH            |
++------+---------------------+-------+-----------------+
+8 rows in set (0.01 sec)
+
+
