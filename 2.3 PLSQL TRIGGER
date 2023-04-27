@@ -1,0 +1,69 @@
+                                   2.3	-PL/SQL PROGRAMS – TRIGGER
+
+
+1) Create a trigger to handle updates to the customer table.
+
+
+
+mysql> CREATE TRIGGER CUST_TRIG AFTER UPDATE ON CUSTOMER FOR EACH ROW BEGIN INSERT INTO CUST SET ID=NEW.ID, NAME=NEW.NAME,ADDRESS=NEW.ADDRESS,CITY=NEW.CITY,PH_NO=NEW.PH_NO; END//
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> UPDATE CUSTOMER SET CITY="Idukki" WHERE ID=120;
+    -> //
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE CUSTOMER SET PH_NO=98567347 WHERE ID=1400;
+    -> //
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM CUST;
+    -> //
++------+-------+--------------+----------+-----------+
+| ID   | NAME  | ADDRESS      | CITY     | PH_NO     |
++------+-------+--------------+----------+-----------+
+|  120 | Anil  | Thenjippalam | Idukki   | 846756243 |
+| 1400 | Hemil | Kanjangad    | Kottayam |  98567347 |
++------+-------+--------------+----------+-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+2) Create a trigger to handle inserts to the product relation ( if price < 5 the set price to 10).
+
+
+mysql> CREATE TRIGGER TRIG_RELATION
+    -> BEFORE INSERT
+    -> ON PRODUCT
+    -> FOR EACH ROW
+    -> BEGIN
+    -> IF NEW.PRICE<5
+    -> THEN
+    -> SET NEW.PRICE=10;
+    -> END IF;
+    -> END; 
+    -> //
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(344,'ERASER',3); 
+    -> //
+Query OK, 1 row affected (0.12 sec)
+
+mysql> SELECT * FROM PRODUCT; 
+    -> //
++------+---------------------+-------+
+| P_ID | P_NAME              | PRICE |
++------+---------------------+-------+
+|  221 | NIRAPARA MATTA RICE |    47 |
+|  222 | NIRAPARA PUTTU PODI |    34 |
+|  223 | PEN(TECHNO TIP)     |    15 |
+|  224 | CHAIR               |  1025 |
+|  225 | MANGO PICKLE        |    79 |
+|  226 | SASSFARAS TOP       |    74 |
+|  227 | TANG POWDER         |   204 |
+|  228 | AMUL MILK POWDER    |   597 |
+|  344 | ERASER              |    10 |
++------+---------------------+-------+
+9 rows in set (0.00 sec)
