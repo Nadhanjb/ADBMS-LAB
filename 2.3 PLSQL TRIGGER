@@ -67,3 +67,4 @@ mysql> SELECT * FROM PRODUCT;
 |  344 | ERASER              |    10 |
 +------+---------------------+-------+
 9 rows in set (0.00 sec)
+//VERIFIED
