@@ -34,3 +34,4 @@ mysql> SELECT P_ID,P_NAME,PRICE,PRICEIND(PRICE) FROM PRODUCT;  //
 8 rows in set (0.01 sec)
 
 
+//VERIFIED
