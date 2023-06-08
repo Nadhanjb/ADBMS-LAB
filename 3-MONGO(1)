@@ -1,0 +1,95 @@
+                                     3-NOSQL/CRUD
+
+
+1) Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.
+
+
+> use invoice
+switched to db invoice
+> db.createCollection("CUSTOMER")
+{ "ok" : 1 }
+> db.CUSTOMER.insertMany([{"Name":"Anand","City":"Thrissur","Age":18},{"Name":"Ammini","City":"Trivandrum","Age":52},{"Name":"Yadu","City":"Idukki","Age":37},{"Name":"Ravi","City":"Calicut","Age":55])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("648170e175f69351774439ed"),
+		ObjectId("648170e175f69351774439ee"),
+                ObjectId("6481714c75f69351774439ef"),
+		ObjectId("6481714c75f69351774439f0")
+	]
+}
+
+
+> db.createCollection("PRODUCT")
+{ "ok" : 1 }
+> db.PRODUCT.insertMany([{"P_name":"Pencil","P_id":101,"Price":30},{"P_name":"Life Boy(Soap)","P_id":103,"Price":25},{"P_name":"Boost","P_id":105,"Price":150}])
+
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("648172cf75f69351774439f1"),
+		ObjectId("648172cf75f69351774439f2"),
+		ObjectId("648172cf75f69351774439f3")
+	]
+}
+
+
+2) Write a MongoDB query to find all documents from the collection CUSTOMER
+
+
+> db.CUSTOMER.find().pretty()
+{
+	"_id" : ObjectId("648170e175f69351774439ed"),
+	"Name" : "Anand",
+	"City" : "Thrissur",
+	"Age" : 18
+}
+{
+	"_id" : ObjectId("648170e175f69351774439ee"),
+	"Name" : "Ammini",
+	"City" : "Trivandrum",
+	"Age" : 52
+}
+{
+	"_id" : ObjectId("6481714c75f69351774439ef"),
+	"Name" : "Yadu",
+	"City" : "Idukki",
+	"Age" : 37
+}
+{
+	"_id" : ObjectId("6481714c75f69351774439f0"),
+	"Name" : "Ravi",
+	"City" : "Calicut",
+	"Age" : 55
+}
+
+
+
+3) Write a MongoDB query to update the city in the collection CUSTOMER.
+
+
+> db.CUSTOMER.update({"City":"Idukki"},{$set:{"City":"Alappuzha"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.CUSTOMER.find()
+{ "_id" : ObjectId("648170e175f69351774439ed"), "Name" : "Anand", "City" : "Thrissur", "Age" : 18 }
+{ "_id" : ObjectId("648170e175f69351774439ee"), "Name" : "Ammini", "City" : "Trivandrum", "Age" : 52 }
+{ "_id" : ObjectId("6481714c75f69351774439ef"), "Name" : "Yadu", "City" : "Alappuzha", "Age" : 37 }
+{ "_id" : ObjectId("6481714c75f69351774439f0"), "Name" : "Ravi", "City" : "Calicut", "Age" : 55 }
+
+
+
+4) Write a MongoDB query to delete the first matched document whose city is “Calicut”.
+
+
+> db.CUSTOMER.deleteOne({"City":"Calicut"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+>  db.CUSTOMER.find()
+{ "_id" : ObjectId("648170e175f69351774439ed"), "Name" : "Anand", "City" : "Thrissur", "Age" : 18 }
+{ "_id" : ObjectId("648170e175f69351774439ee"), "Name" : "Ammini", "City" : "Trivandrum", "Age" : 52 }
+{ "_id" : ObjectId("6481714c75f69351774439ef"), "Name" : "Yadu", "City" : "Alappuzha", "Age" : 37 }
+
+
+
+
+
+
