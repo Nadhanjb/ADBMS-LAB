@@ -1,0 +1,40 @@
+                              5-AGGREGATE FUNCTION
+
+
+
+> db.CUSTOMER.find()
+{ "_id" : ObjectId("648170e175f69351774439ed"), "Name" : "Anand", "City" : "Thrissur", "Age" : 18 }
+{ "_id" : ObjectId("648170e175f69351774439ee"), "Name" : "Ammini", "City" : "Trivandrum", "Age" : 52 }
+{ "_id" : ObjectId("6481714c75f69351774439ef"), "Name" : "Yadu", "City" : "Alappuzha", "Age" : 37 }
+{ "_id" : ObjectId("6482c69878a9c9672a787dbe"), "Name" : "Cimi", "City" : "Thrissur", "Age" : 23 }
+
+
+
+1)Write a MongoDB query to sort customer details in ascending order of their name.
+
+
+> db.CUSTOMER.find().sort({"Name":1})
+{ "_id" : ObjectId("648170e175f69351774439ee"), "Name" : "Ammini", "City" : "Trivandrum", "Age" : 52 }
+{ "_id" : ObjectId("648170e175f69351774439ed"), "Name" : "Anand", "City" : "Thrissur", "Age" : 18 }
+{ "_id" : ObjectId("6482c69878a9c9672a787dbe"), "Name" : "Cimi", "City" : "Thrissur", "Age" : 23 }
+{ "_id" : ObjectId("6481714c75f69351774439ef"), "Name" : "Yadu", "City" : "Alappuzha", "Age" : 37 }
+> 
+
+
+2) Write a MongoDB query to count number of customers in each city.
+
+
+> db.CUSTOMER.aggregate([{$group:{_id:"$City",total:{$sum:1}}}])
+{ "_id" : "Thrissur", "total" : 2 }
+{ "_id" : "Trivandrum", "total" : 1 }
+{ "_id" : "Alappuzha", "total" : 1 }
+
+
+3) Write a MongoDB query to find minimum and maximum age in each city.
+
+
+> db.CUSTOMER.aggregate([{$group:{_id:"$City",Min_age:{$min:"$Age"},Max_age:{$max:"$Age"}}}]).pretty()
+{ "_id" : "Thrissur", "Min_age" : 18, "Max_age" : 23 }
+{ "_id" : "Trivandrum", "Min_age" : 52, "Max_age" : 52 }
+{ "_id" : "Alappuzha", "Min_age" : 37, "Max_age" : 37 }
+
