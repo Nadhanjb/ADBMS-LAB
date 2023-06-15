@@ -35,12 +35,6 @@ mongodump --db invoice
 
 
 
-> show dbs
-admin    0.000GB
-config   0.000GB
-invoice  0.000GB
-local    0.000GB
-neda     0.000GB
 
 
 ksb@ksb-OptiPlex-3060:~$ mongodump --db invoice
@@ -52,6 +46,13 @@ ksb@ksb-OptiPlex-3060:~$ mongodump --db invoice
 2023-06-15T14:23:28.492+0530	done dumping invoice.Product (3 documents)
 2023-06-15T14:23:28.493+0530	writing invoice.Customer to dump/invoice/Customer.bson
 2023-06-15T14:23:28.494+0530	done dumping invoice.Customer (5 documents)
+
+> show dbs
+admin    0.000GB
+config   0.000GB
+invoice  0.000GB
+local    0.000GB
+neda     0.000GB
 
 
 
