@@ -1,0 +1,99 @@
+                                              6–MONGODB(ADMINISTRATION)
+
+
+
+1) Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database.
+
+> use admin
+switched to db admin
+> db.createUser({user:"CUSTOMER1",pwd:"neda",roles:[{role:"read",db:"invoice"}]})
+Successfully added user: {
+	"user" : "CUSTOMER1",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "invoice"
+		}
+	]
+}
+
+
+2) Write a MongoDB query to create the backup for the INVOICE database.
+
+
+mongodump --db invoice
+
+
+2023-06-14T15:41:03.361+0530	writing invoice.CUSTOMER to dump/invoice/CUSTOMER.bson
+2023-06-14T15:41:03.361+0530	writing invoice.PRODUCT to dump/invoice/PRODUCT.bson
+2023-06-14T15:41:03.363+0530	done dumping invoice.PRODUCT (3 documents)
+2023-06-14T15:41:03.363+0530	done dumping invoice.CUSTOMER (4 documents)
+
+
+
+3) Write a MongoDB query to restore a particular database or a collection.
+
+
+
+> show dbs
+admin    0.000GB
+config   0.000GB
+invoice  0.000GB
+local    0.000GB
+neda     0.000GB
+
+
+ksb@ksb-OptiPlex-3060:~$ mongodump --db invoice
+2023-06-15T14:23:28.491+0530	writing invoice.CUSTOMER to dump/invoice/CUSTOMER.bson
+2023-06-15T14:23:28.491+0530	writing invoice.PRODUCT to dump/invoice/PRODUCT.bson
+2023-06-15T14:23:28.491+0530	writing invoice.Product to dump/invoice/Product.bson
+2023-06-15T14:23:28.492+0530	done dumping invoice.CUSTOMER (4 documents)
+2023-06-15T14:23:28.492+0530	done dumping invoice.PRODUCT (3 documents)
+2023-06-15T14:23:28.492+0530	done dumping invoice.Product (3 documents)
+2023-06-15T14:23:28.493+0530	writing invoice.Customer to dump/invoice/Customer.bson
+2023-06-15T14:23:28.494+0530	done dumping invoice.Customer (5 documents)
+
+
+
+> use invoice
+switched to db invoice
+> db.dropDatabase()
+{ "dropped" : "invoice", "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+neda    0.000GB
+
+
+
+ksb@ksb-OptiPlex-3060:~$ mongorestore --db invoice dump/invoice
+2023-06-15T14:36:57.077+0530	The --db and --collection flags are deprecated for this use-case; please use --nsInclude instead, i.e. with --nsInclude=${DATABASE}.${COLLECTION}
+2023-06-15T14:36:57.077+0530	building a list of collections to restore from dump/invoice dir
+2023-06-15T14:36:57.077+0530	reading metadata for invoice.CUSTOMER from dump/invoice/CUSTOMER.metadata.json
+2023-06-15T14:36:57.077+0530	reading metadata for invoice.Customer from dump/invoice/Customer.metadata.json
+2023-06-15T14:36:57.077+0530	reading metadata for invoice.PRODUCT from dump/invoice/PRODUCT.metadata.json
+2023-06-15T14:36:57.077+0530	reading metadata for invoice.Product from dump/invoice/Product.metadata.json
+2023-06-15T14:36:57.572+0530	restoring invoice.Customer from dump/invoice/Customer.bson
+2023-06-15T14:36:57.585+0530	finished restoring invoice.Customer (5 documents, 0 failures)
+2023-06-15T14:36:57.696+0530	restoring invoice.CUSTOMER from dump/invoice/CUSTOMER.bson
+2023-06-15T14:36:57.707+0530	finished restoring invoice.CUSTOMER (4 documents, 0 failures)
+2023-06-15T14:36:57.780+0530	restoring invoice.Product from dump/invoice/Product.bson
+2023-06-15T14:36:57.797+0530	finished restoring invoice.Product (3 documents, 0 failures)
+2023-06-15T14:36:57.896+0530	restoring invoice.PRODUCT from dump/invoice/PRODUCT.bson
+2023-06-15T14:36:57.912+0530	finished restoring invoice.PRODUCT (3 documents, 0 failures)
+2023-06-15T14:36:57.912+0530	no indexes to restore for collection invoice.PRODUCT
+2023-06-15T14:36:57.912+0530	no indexes to restore for collection invoice.Product
+2023-06-15T14:36:57.912+0530	no indexes to restore for collection invoice.CUSTOMER
+2023-06-15T14:36:57.912+0530	no indexes to restore for collection invoice.Customer
+2023-06-15T14:36:57.912+0530	15 document(s) restored successfully. 0 document(s) failed to restore.
+
+
+> show dbs
+admin    0.000GB
+config   0.000GB
+invoice  0.000GB
+local    0.000GB
+neda     0.000GB
+
+
