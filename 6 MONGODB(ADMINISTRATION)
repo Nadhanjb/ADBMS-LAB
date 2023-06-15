@@ -23,11 +23,17 @@ Successfully added user: {
 
 mongodump --db invoice
 
+ksb@ksb-OptiPlex-3060:~$ mongodump --db invoice
 
-2023-06-14T15:41:03.361+0530	writing invoice.CUSTOMER to dump/invoice/CUSTOMER.bson
-2023-06-14T15:41:03.361+0530	writing invoice.PRODUCT to dump/invoice/PRODUCT.bson
-2023-06-14T15:41:03.363+0530	done dumping invoice.PRODUCT (3 documents)
-2023-06-14T15:41:03.363+0530	done dumping invoice.CUSTOMER (4 documents)
+ksb@ksb-OptiPlex-3060:~$ mongodump --db invoice
+2023-06-15T14:59:05.220+0530	writing invoice.Customer to dump/invoice/Customer.bson
+2023-06-15T14:59:05.220+0530	writing invoice.CUSTOMER to dump/invoice/CUSTOMER.bson
+2023-06-15T14:59:05.220+0530	writing invoice.PRODUCT to dump/invoice/PRODUCT.bson
+2023-06-15T14:59:05.221+0530	done dumping invoice.CUSTOMER (4 documents)
+2023-06-15T14:59:05.221+0530	done dumping invoice.Customer (5 documents)
+2023-06-15T14:59:05.221+0530	done dumping invoice.PRODUCT (3 documents)
+2023-06-15T14:59:05.222+0530	writing invoice.Product to dump/invoice/Product.bson
+2023-06-15T14:59:05.222+0530	done dumping invoice.Product (3 documents)
 
 
 
