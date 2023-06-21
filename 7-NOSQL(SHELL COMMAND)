@@ -1,0 +1,19 @@
+                                7- NoSQL Shell Commands
+
+
+
+
+
+1) Write a MongoDB query to create an index for the collection customer using the field  customer_name.
+
+
+> db.CUSTOMER.createIndex({name:1})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+
+
+
